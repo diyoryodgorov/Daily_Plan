@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Kunlik vazifalaringizni rejalashtiring, vaqtingizni taqsimlang va maqsadlaringizni kuzating.">
+  <title>Kun tartibim — reja va vazifalar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="my.css">
+  <script src="my.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Kun tartibim bosh sahifasi">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 3v3m10-3v3M4.5 9h15M6.5 5h11A2.5 2.5 0 0 1 20 7.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 18.5v-11A2.5 2.5 0 0 1 6.5 5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m9 14 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="brand-name">kun<span>tartibim</span></span>
+      </a>
+      <div class="topbar-right">
+        <span class="today-label" id="today-label"></span>
+        <span class="avatar" aria-hidden="true">D</span>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="welcome-row">
+        <div>
+          <p class="eyebrow">REJALASHTIRING VA AMALGA OSHIRING</p>
+          <h1 id="page-title">Kuningizni rejalashtiring <span class="wave" aria-hidden="true">✳</span></h1>
+          <p class="page-subtitle" id="page-subtitle">Har bir katta natija kichik qadamlardan boshlanadi.</p>
+        </div>
+        <div class="add-menu-wrap">
+        <button class="primary-button" id="add-task-button" type="button" aria-haspopup="true" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+          <span>Vazifa qo‘shish</span>
+        </button>
+        <div class="period-menu" id="period-menu" hidden>
+          <p>Qaysi reja kerak?</p>
+          <button type="button" data-add-period="day"><span>☀</span><span><strong>Kunlik</strong><small>Bir kun uchun vazifalar</small></span></button>
+          <button type="button" data-add-period="week"><span>▦</span><span><strong>Haftalik</strong><small>Haftaning har bir kuni</small></span></button>
+          <button type="button" data-add-period="month"><span>▣</span><span><strong>Oylik</strong><small>Oy kunlari va haftalar</small></span></button>
+          <button type="button" data-add-period="year"><span>◷</span><span><strong>Yillik</strong><small>Yil oylariga maqsadlar</small></span></button>
+        </div>
+        </div>
+      </section>
+
+      <section class="overview-grid" aria-label="Reja ko‘rsatkichlari">
+        <article class="stat-card stat-card-main">
+          <div class="stat-icon icon-purple" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 3v3m8-3v3M4.5 9h15M6.5 5h11A2.5 2.5 0 0 1 20 7.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 18.5v-11A2.5 2.5 0 0 1 6.5 5Z"/><path d="m9 14 2 2 4-4"/></svg>
+          </div>
+          <div class="stat-copy"><span class="stat-label">Bajarilgan vazifalar</span><strong id="completed-stat">0 <span>/ 0</span></strong></div>
+          <div class="stat-progress" aria-hidden="true"><span id="progress-bar"></span></div>
+          <span class="stat-foot" id="progress-caption">Hali vazifalar yo‘q</span>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon icon-blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          </div>
+          <div class="stat-copy"><span class="stat-label">Rejalashtirilgan vaqt</span><strong id="time-stat">0 <span>soat</span></strong></div>
+          <span class="stat-foot" id="time-caption">Vaqtlaringizni rejalashtiring</span>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon icon-green" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M7 15l4-4 3 2 5-6"/><path d="M15 7h4v4"/></svg>
+          </div>
+          <div class="stat-copy"><span class="stat-label">Bajarilish darajasi</span><strong id="completion-stat">0<span>%</span></strong></div>
+          <span class="stat-foot" id="completion-caption">Boshlash uchun yaxshi kun</span>
+        </article>
+      </section>
+
+      <section class="planner-card">
+        <div class="planner-toolbar">
+          <div class="tabs" role="tablist" aria-label="Reja davri">
+            <button class="tab-button active" type="button" role="tab" aria-selected="true" data-period="day">Kunlik</button>
+            <button class="tab-button" type="button" role="tab" aria-selected="false" data-period="week">Haftalik</button>
+            <button class="tab-button" type="button" role="tab" aria-selected="false" data-period="month">Oylik</button>
+            <button class="tab-button" type="button" role="tab" aria-selected="false" data-period="year">Yillik</button>
+          </div>
+          <div class="date-controls">
+            <button class="icon-button" id="previous-period" type="button" aria-label="Oldingi davr">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <span class="date-range" id="date-range"></span>
+            <button class="icon-button" id="next-period" type="button" aria-label="Keyingi davr">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            <button class="today-button" id="today-button" type="button">Bugun</button>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <section class="tasks-section" aria-labelledby="tasks-heading">
+            <div class="section-heading">
+              <div>
+                <h2 id="tasks-heading">Rejalarim</h2>
+                <p id="tasks-description">Bugungi muhim ishlaringiz</p>
+              </div>
+              <span class="task-count" id="task-count">0 ta vazifa</span>
+            </div>
+            <div class="schedule-view" id="schedule-view"></div>
+          </section>
+
+          <aside class="sidebar">
+            <section class="time-card">
+              <div class="section-heading compact-heading">
+                <div><h2>Vaqt taqsimoti</h2><p>Yo‘nalishlar bo‘yicha</p></div>
+                <span class="clock-badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                </span>
+              </div>
+              <div class="time-total"><strong id="sidebar-hours">0 soat</strong><span>rejalashtirilgan</span></div>
+              <div class="category-list" id="category-list"></div>
+              <div class="time-note">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3 20h18L12 3Z"/><path d="M12 9v4m0 3h.01"/></svg>
+                <span>Dam olish uchun ham vaqt ajratishni unutmang.</span>
+              </div>
+            </section>
+            <section class="quote-card">
+              <span class="quote-spark" aria-hidden="true">✦</span>
+              <p class="quote-label">BUGUNGI ESLATMA</p>
+              <p class="quote-text">Mukammal bo‘lish shart emas. Muhimi — har kuni bir qadam oldinga.</p>
+              <span class="quote-author">— Kichik qadamlar, katta natijalar</span>
+            </section>
+          </aside>
+        </div>
+      </section>
+      <section class="missed-section" id="missed-section" aria-labelledby="missed-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">VAQTIDA BAJARILMAGAN</p>
+            <h2 id="missed-heading">Bajarilmagan vazifalar</h2>
+            <p>O‘tgan kunlardagi bajarilmagan rejalar shu yerda saqlanadi.</p>
+          </div>
+          <span class="task-count missed-count" id="missed-count">0 ta vazifa</span>
+        </div>
+        <div class="missed-list" id="missed-list"></div>
+      </section>
+      <footer class="footer-note">Kuningizni o‘zingiz boshqaring <span aria-hidden="true">·</span> Rejalaringiz faqat shu qurilmada saqlanadi</footer>
+    </main>
+  </div>
+  <dialog class="task-dialog" id="task-dialog">
+    <form id="task-form">
+      <div class="form-heading">
+        <div><p class="eyebrow" id="dialog-eyebrow">YANGI REJA</p><h2 id="dialog-title">Keyingi qadamingiz nima?</h2></div>
+        <button class="icon-button" id="close-form" type="button" aria-label="Formani yopish"><svg viewBox="0 0 24 24"><path d="m18 6-12 12M6 6l12 12"/></svg></button>
+      </div>
+      <label class="field full-field"><span>Vazifa nomi</span><input id="task-title" name="title" type="text" maxlength="120" placeholder="Masalan, ingliz tili darsini takrorlash" required></label>
+      <div class="form-grid">
+        <label class="field"><span>Sana</span><input id="task-date" name="date" type="date" required></label>
+        <label class="field"><span>Yo‘nalish</span><select id="task-category" name="category"><option value="Ish">Ish</option><option value="O‘qish">O‘qish</option><option value="Shaxsiy">Shaxsiy</option><option value="Salomatlik">Salomatlik</option><option value="Boshqa">Boshqa</option></select></label>
+        <label class="field"><span>Boshlanish vaqti <span class="optional">(ixtiyoriy)</span></span><input id="task-start" name="start" type="time"></label>
+        <label class="field"><span>Tugash vaqti <span class="optional">(ixtiyoriy)</span></span><input id="task-end" name="end" type="time"></label>
+      </div>
+      <p class="form-error" id="form-error" role="alert" hidden></p>
+      <div class="form-actions"><button class="secondary-button" id="cancel-form" type="button">Bekor qilish</button><button class="primary-button submit-button" type="submit">Vazifani saqlash</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
